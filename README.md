@@ -22,8 +22,8 @@ Ce projet implémente un système de transfert de données sécurisé entre deux
    ```bash
    git clone https://github.com/<ton-nom-utilisateur>/<Data-reconcialation>.git
    
-2. Accédez au dossier du projet
-     cd <Data-reconcialation>
+2. Accédez au dossier du projet avec la commande cd
+     
 
 3. Configurez les fichiers de base de données SQLite nécessaires (tampon_A.db, tampon_B.db, base_A.db, base_B.db) dans le répertoire du projet.
 
