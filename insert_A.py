@@ -17,7 +17,7 @@ factures = [
     ("Facture 005", datetime.now().strftime('%Y-%m-%d'), "Actif"),
     ("Facture 006", datetime.now().strftime('%Y-%m-%d'), "Actif"),
     ("Facture 007", datetime.now().strftime('%Y-%m-%d'), "Actif"),
-    ("Facture 008", datetime.now().strftime('%Y-%m-%d'), "Inactif"),
+    ("Facture 008", datetime.now().strftime('%Y-%m-%d'), "Actif"),
     ("Facture 009", datetime.now().strftime('%Y-%m-%d'), "Inactif"),
     ("Facture 010", datetime.now().strftime('%Y-%m-%d'), "Inactif")
 ]

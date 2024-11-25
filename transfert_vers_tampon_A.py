@@ -1,4 +1,7 @@
 import sqlite3
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
 
 # Connexion à la base de données principale A et Tampon A
 conn_A = sqlite3.connect('C:/Users/HP/Documents/base_A.db')
@@ -82,7 +85,6 @@ print(f"\nNombre total de factures non transférées en raison du statut 'Inacti
 for details in factures_inactives_details:
     print(details)
 
-
 # Enregistrer les changements dans Tampon A
 conn_Tampon_A.commit()
 
@@ -91,3 +93,38 @@ conn_A.close()
 conn_Tampon_A.close()
 
 print("Transfert des données de A vers Tampon A terminé avec succès.")
+
+# Fonction pour envoyer un email
+def envoyer_email(subject, body, to_email):
+    from_email = 'marcoagencys@gmail.com'
+    password = 'yzmx yqkr jvwf dazi'
+
+    # Configurer le serveur SMTP
+    server = smtplib.SMTP('smtp.gmail.com', 587)
+    server.starttls()
+    server.login(from_email, password)
+
+    # Construire l'email
+    msg = MIMEMultipart()
+    msg['From'] = from_email
+    msg['To'] = to_email
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+
+    # Envoyer l'email
+    server.sendmail(from_email, to_email, msg.as_string())
+    server.quit()
+
+    print(f"Email envoyé à {to_email} avec succès.")
+
+#  Envoyer un email avec les détails du transfert
+subject = "Rapport de transfert vers Tampon A"
+body = f"""
+Le transfert des données de la base A vers Tampon A a été éffectué avec succès.
+
+Nombre total de factures transférées : {len(factures_A) - factures_inactives}
+Nombre de factures ignorées (statut 'Inactif') : {factures_inactives}
+
+"""
+to_email = "vidalfandohan2001@gmail.com"
+envoyer_email(subject, body, to_email)
